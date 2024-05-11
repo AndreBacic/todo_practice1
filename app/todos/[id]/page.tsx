@@ -11,12 +11,15 @@ export default async function Todo({ params }: any) {
     const todo = await getTodo(params.id);
 
     return (
-        <div>
-            <h2>{todo.title}</h2>
-            <p>{todo.description}</p>
-            <p>Priority: {todo.priority}</p>
-            <p>Due {todo.deadline}</p>
-            <p>Created {todo.created}</p>
-        </div>
+        <>
+            <div>
+                <h2>{todo.title}</h2>
+                <p>{todo.description}</p>
+                <p>Priority: {todo.priority}</p>
+                <p>Due {todo.deadline}</p>
+                <p>Created {todo.created}</p>
+            </div>
+            <a href='/todos'>Back to list</a>
+        </>
     )
 }
