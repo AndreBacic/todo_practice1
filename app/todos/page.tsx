@@ -18,12 +18,12 @@ export default async function TodosList() {
     const todos = await getTodos()
 
     return (
-        <div>
+        <>
             <h1>Todos</h1>
-            <Link href="/todos/create" className="pb-8">Create a todo -&gt;</Link>
+            <Link href="/todos/create" className="block pb-8">Create a todo -&gt;</Link>
             <div className="grid !grid-cols-3">
                 {todos?.map((todo) => (
-                    <Link key={todo.id} href={`/todos/${todo.id}`}>
+                    <Link key={todo.id} href={`/todos/${todo.id}`} className='p-4 border-[1px] border-gray-500 rounded-md'>
                         <h2>{todo.title}</h2>
                         <p dangerouslySetInnerHTML={{ __html: todo.description }} />
                         <p>Priority: {todo.priority}</p>
@@ -32,6 +32,6 @@ export default async function TodosList() {
                     </Link>
                 ))}
             </div>
-        </div>
+        </>
     )
 }

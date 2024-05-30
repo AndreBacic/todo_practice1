@@ -27,7 +27,7 @@ async function createTodo(formSubmission: FormData) {
 
 export default function CreateTodo() {
     return (
-        <div>
+        <>
             <form action={createTodo}>
                 <input type="text" name="title" placeholder="Title" />
                 <input type="text" name="description" placeholder="Description" />
@@ -35,7 +35,7 @@ export default function CreateTodo() {
                 <input type="date" name="deadline" placeholder="Deadline" />
                 <button type="submit">Create</button>
             </form>
-            <Link href="/todos">Back to todos</Link>
-        </div>
+            <Link href="/todos">&lt;- Back to list</Link>
+        </>
     );
 }

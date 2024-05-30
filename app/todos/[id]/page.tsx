@@ -14,12 +14,12 @@ export default async function Todo({ params }: any) {
         <>
             <div>
                 <h2>{todo.title}</h2>
-                <p>{todo.description}</p>
+                <p dangerouslySetInnerHTML={{ __html: todo.description }} />
                 <p>Priority: {todo.priority}</p>
                 <p>Due {todo.deadline}</p>
                 <p>Created {todo.created}</p>
             </div>
-            <a href='/todos'>Back to list</a>
+            <a href='/todos'>&lt;- Back to list</a>
         </>
     )
 }
