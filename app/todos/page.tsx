@@ -9,7 +9,7 @@ export const dynamic = 'auto',
     preferredRegion = 'auto'
 
 async function getTodos() {
-    const db = new PocketBase('http://127.0.0.1:8090')
+    const db = new PocketBase(process.env.POCKETBASE_URL)
     const data = await db.collection('todos').getList(0, 24)
     console.log(data)
 
@@ -21,6 +21,8 @@ export default async function TodosList() {
 
     return (
         <div>
+            <h1>Todos</h1>
+            <Link href="/todos/create">Create a todo</Link>
             {todos?.map((todo) => (
                 <Link key={todo.id} href={`/todos/${todo.id}`}>
                     <h2>{todo.title}</h2>
