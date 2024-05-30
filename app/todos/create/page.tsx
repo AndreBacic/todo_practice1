@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { redirect } from 'next/navigation';
 import PocketBase from 'pocketbase';
 
 export const dynamic = 'auto',
@@ -8,13 +9,10 @@ export const dynamic = 'auto',
     runtime = 'nodejs',
     preferredRegion = 'auto'
 
-// 1) create form
-// 2) create post request to pocketbase
-// 3) redirect to todos page
-
 async function createTodo(formSubmission: FormData) {
     "use server";
 
+    // this is now just here to demo how to get values from the FormData
     const data = {
         title: formSubmission.get("title"),
         description: formSubmission.get("description"),
@@ -24,10 +22,7 @@ async function createTodo(formSubmission: FormData) {
 
     const pb = new PocketBase(process.env.POCKETBASE_URL);
     await pb.collection('todos').create(formSubmission) //.create(data)
-
-    // doesn't work because it's running on the server :(
-    // "use client"
-    // window.location.href = '/todos';
+    redirect('/todos');
 }
 
 export default function CreateTodo() {
