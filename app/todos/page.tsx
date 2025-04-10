@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import PocketBase from 'pocketbase';
+import { Todo } from '../interfaces/Todo';
 
 export const dynamic = 'auto',
     dynamicParams = true,
@@ -10,7 +11,7 @@ export const dynamic = 'auto',
 
 async function getTodos() {
     const db = new PocketBase(process.env.POCKETBASE_URL)
-    const data = await db.collection('todos').getList(0, 24)
+    const data = await db.collection<Todo>('todos').getList(0, 24)
     return data?.items
 }
 

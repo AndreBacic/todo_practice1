@@ -1,8 +1,8 @@
+import Link from "next/link";
 import { RecordModel } from "pocketbase";
 
 async function getTodo(id: string) {
-    // TODO: refactor pocketbase url to be in a global setting somewhere
-    const response = await fetch(`http://127.0.0.1:8090/api/collections/todos/records/${id}`);
+    const response = await fetch(`${process.env.POCKETBASE_URL}/api/collections/todos/records/${id}`);
     const data = await response.json()
     return data as RecordModel
 }
@@ -12,6 +12,7 @@ export default async function Todo({ params }: any) {
 
     return (
         <>
+            <Link href={`/todos/${todo.id}/edit`} className="block pb-8">Edit -&gt;</Link>
             <div>
                 <h2>{todo.title}</h2>
                 <p dangerouslySetInnerHTML={{ __html: todo.description }} />
